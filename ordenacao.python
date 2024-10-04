@@ -1,0 +1,55 @@
+import random
+import time
+from datetime import datetime
+
+class Produto:
+    def _init_(self, nome, preco, avaliacao, data_adicao, categoria):
+        self.nome = nome
+        self.preco = preco
+        self.avaliacao = avaliacao
+        self.data_adicao = data_adicao
+        self.categoria = categoria
+
+# Função para gerar produtos aleatórios
+def gerar_produtos(quantidade):
+    produtos = []
+    for _ in range(quantidade):
+        produtos.append(Produto(
+            f"Produto {_+1}",
+            random.uniform(10, 100),
+            random.uniform(0, 5),
+            datetime.now(),
+            random.choice(["Eletrônicos", "Roupas", "Alimentos"])
+        ))
+    return produtos
+
+# Implementações dos algoritmos de ordenação (omitidas por brevidade)
+# ... (implementar Bubble Sort, Quick Sort, Merge Sort e Heap Sort)
+
+# Funções para ordenar por diferentes critérios
+def ordenar_por_preco(produtos, ascendente=True):
+    # ... (implementação da ordenação por preço)
+def ordenar_por_avaliacao(produtos, ascendente=True):
+    # ... (implementação da ordenação por avaliação)
+def ordenar_por_data(produtos, ascendente=True):
+    # ... (implementação da ordenação por data)
+def ordenar_por_categoria(produtos):
+    # ... (implementação da ordenação por categoria)
+
+# Função para medir o tempo de execução
+def medir_tempo(funcao, *args):
+    inicio = time.time()
+    funcao(*args)
+    fim = time.time()
+    return fim - inicio
+
+# Criando uma lista de produtos aleatórios
+produtos = gerar_produtos(1000)
+
+# Ordenando e medindo o tempo para cada critério
+for criterio in ["preco", "avaliacao", "data", "categoria"]:
+    print(f"Ordenando por {criterio}:")
+    for algoritmo in [bubble_sort, quick_sort, merge_sort, heap_sort]:
+        produtos_copia = produtos.copy()
+        tempo = medir_tempo(algoritmo, produtos_copia, ascendente=True)
+        print(f"  {algoritmo._name_}: {tempo:.5f} segundos")
